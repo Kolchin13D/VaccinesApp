@@ -5,17 +5,27 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 
-class VaccineAdapter(val itemList: ArrayList<VaccineModel>) : RecyclerView.Adapter<VaccineAdapter.VaccineViewHolder>() {
+class VaccineAdapter(val itemList: ArrayList<VaccineModel>) :
+    RecyclerView.Adapter<VaccineAdapter.VaccineViewHolder>() {
 
-    inner class VaccineViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
+    inner class VaccineViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         lateinit var imageView: ImageView
         lateinit var title: TextView
 
-        init{
+        init {
             imageView = itemView.findViewById(R.id.image)
             title = itemView.findViewById(R.id.title)
+
+            itemView.setOnClickListener() {
+                Toast.makeText(
+                    itemView.context,
+                    "You select ${itemList[adapterPosition].name}",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
         }
     }
 
